@@ -3,11 +3,15 @@ import { FaStar } from 'react-icons/fa'
 
 type ProductCardProps = {
   product: Product
+  onClick: () => void
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, onClick }: ProductCardProps) => {
     return (
-        <div className="bg-white rounded-lg duration-300 overflow-hidden flex flex-col">
+        <div
+            className="bg-white rounded-lg duration-300 overflow-hidden flex flex-col cursor-pointer hover:shadow-lg transition-shadow"
+            onClick={onClick}
+        >
             <div className="relative w-full h-64 bg-gray-100 flex items-center justify-center p-4">
                 <img
                     src={product.image}

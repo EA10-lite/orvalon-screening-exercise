@@ -1,7 +1,9 @@
 import { useState, useMemo } from 'react'
 import { useProducts } from '../../api/products'
+import type { Product } from '../../types/product'
 import {
   ProductCard,
+  ProductModal,
   SearchBar,
   LoadingSpinner,
   ErrorState,
@@ -10,6 +12,7 @@ import {
 
 const Products = () => {
     const [searchQuery, setSearchQuery] = useState('')
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
     const { data: products, isLoading, isError } = useProducts()
 
     const filteredProducts = useMemo(() => {
@@ -52,11 +55,18 @@ const Products = () => {
                             <ProductCard
                                 key={product.id}
                                 product={product}
+                                onClick={() => setSelectedProduct(product)}
                             />
                         ))}
                     </div>
                 )}
             </main>
+
+            <ProductModal
+                product={selectedProduct}
+                isOpen={!!selectedProduct}
+                onClose={() => setSelectedProduct(null)}
+            />
         </div>
     )
 }
