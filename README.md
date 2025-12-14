@@ -22,12 +22,19 @@ This application serves as a portfolio of frontend development skills, demonstra
 
 ```text
 src/
+├── api/
+│   └── products.ts    # API hooks using TanStack Query
 ├── pages/
 │   ├── home/          # Home screen with exercise navigation
 │   ├── linkedin/      # Exercise 1: LinkedIn UI replication
 │   ├── todo/          # Exercise 2: Interactive Todo List
 │   └── products/      # Exercise 3: Product Listing with API
-├── App.tsx            # Main app component with routing
+│       └── components/ # Product-related components
+├── store/
+│   └── todoStore.ts   # Zustand store for Todo app
+├── types/
+│   └── product.ts     # TypeScript type definitions
+├── App.tsx            # Main app component with routing and QueryClient
 └── main.tsx           # Application entry point
 ```
 
@@ -101,11 +108,20 @@ pnpm dev
 
 **Features**:
 
-- Fetch products from FakeStore API
-- Grid layout with responsive design
-- Search functionality
-- Loading states and error handling
-- Empty state handling
+- Fetch products from FakeStore API using TanStack React Query
+- Responsive grid layout (1-4 columns based on screen size)
+- Real-time search functionality (title, description, category)
+- Loading spinner during data fetch
+- Error state handling with user-friendly messages
+- Empty state when no products match search query
+- Product cards displaying image, title, description, price, rating, and category
+
+**Implementation Details**:
+
+- Uses TanStack React Query for data fetching, caching, and error handling
+- Client-side search filtering with useMemo for performance
+- TypeScript interfaces for type safety
+- Component-based architecture with reusable UI components
 
 **Route**: `/products`
 

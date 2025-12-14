@@ -1,9 +1,62 @@
-
+import { useState, useMemo } from 'react'
+import { useProducts } from '../../api/products'
+import {
+  ProductCard,
+  SearchBar,
+  LoadingSpinner,
+  ErrorState,
+  EmptyState,
+} from './components'
 
 const Products = () => {
+    const [searchQuery, setSearchQuery] = useState('')
+    const { data: products, isLoading, isError } = useProducts()
+
+    const filteredProducts = useMemo(() => {
+        if (!products) return []
+        if (!searchQuery.trim()) return products
+
+        const query = searchQuery.toLowerCase()
+        return products.filter(
+        (product) =>
+            product.title.toLowerCase().includes(query) ||
+            product.description.toLowerCase().includes(query) ||
+            product.category.toLowerCase().includes(query)
+        )
+    }, [products, searchQuery])
+
     return (
-        <div>
-            <h1 className="text-2xl font-bold">Products</h1>
+        <div className="min-h-screen bg-gray-50">
+            <header>
+                <div className="bg-black p-6">
+                    <h4 className="text-white text-lg font-[500]">Welcome to Product Listing</h4>
+                </div>
+            </header>
+            <div className="bg-[#2a2c33] p-6 sticky top-0 z-50 shadow-md">
+                <SearchBar
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                />
+            </div>
+
+            <main className="container mx-auto px-4 py-8">
+                {isLoading && <LoadingSpinner />}
+
+                {isError && <ErrorState />}
+
+                {!isLoading && !isError && filteredProducts.length === 0 && <EmptyState />}
+
+                {!isLoading && !isError && filteredProducts.length > 0 && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {filteredProducts.map((product) => (
+                            <ProductCard
+                                key={product.id}
+                                product={product}
+                            />
+                        ))}
+                    </div>
+                )}
+            </main>
         </div>
     )
 }

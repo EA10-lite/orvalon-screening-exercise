@@ -15,11 +15,11 @@ const TodoItem = ({ todo, handleDelete, handleToggle, isCompleted }: TodoItemPro
                 <div className="flex items-center gap-2">
                     <button
                         onClick={handleToggle}
-                        className={`w-6 h-6 border border-gray-300 dark:border-gray-700 flex items-center justify-center cursor-pointer rounded-md ${isCompleted ? "bg-[#515460]" : "bg-transparent"}`}
+                        className={`w-6 h-6 border border-gray-300 flex items-center justify-center cursor-pointer rounded-md ${isCompleted ? "bg-[#515460]" : "bg-transparent"}`}
                     >
                         {isCompleted && <BsCheck2 size={16} color="white" />}
                     </button>
-                    <p className="text-gray-900 dark:text-gray-100 text-sm font-[500]">{todo}</p>
+                    <p className="text-gray-900 text-sm font-[500]">{todo}</p>
                 </div>
 
 
