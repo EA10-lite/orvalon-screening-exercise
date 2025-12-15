@@ -140,7 +140,7 @@ const NavbarItem = ({ label, icon, isActive, badge, handleClick }: NavbarItemPro
                     </span>
                 )}
             </span>
-            <span className="text-xs font-[400] mt-1 hidden lg:block">{label}</span>
+            <span className="text-xs font-[400] mt-1 hidden lg:block whitespace-nowrap">{label}</span>
         </button>
     )
 }
@@ -160,7 +160,7 @@ const NavbarDropdown = ({ label, icon, isActive, handleClick }: NavbarDropdownPr
             onClick={handleClick}
         >
             <span className="navbar-item-icon">{icon}</span>
-            <span className="text-xs font-[400] mt-1 flex items-center gap-1">
+            <span className="text-xs font-[400] mt-1 flex items-center gap-1 whitespace-nowrap">
                 {label}
                 <span className="text-[10px]">{CHEVRON_DOWN_ICON}</span>
             </span>
