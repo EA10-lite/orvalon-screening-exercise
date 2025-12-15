@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { FaLinkedin } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Avatar from './Avatar'
@@ -6,6 +6,7 @@ import Search from './Search'
 import { USER } from '../constants/user'
 import { RiArrowDownSFill } from 'react-icons/ri'
 import { HOME_ICON, NETWORK_ICON, JOBS_ICON, MESSAGING_ICON, NOTIFICATIONS_ICON, BUSINESS_ICON } from './icons'
+import { BsThreeDots } from 'react-icons/bs'
 
 
 
@@ -19,6 +20,24 @@ const NAV_ITEMS = [
 
 const Navbar = () => {
   const [activeItem, setActiveItem] = useState<number>(0)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
+  const mobileMenuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isMobileMenuOpen])
 
   return (
     <header className="bg-white fixed top-0 z-[105] border-b border-[#8c8c8c33] w-full">
@@ -67,6 +86,38 @@ const Navbar = () => {
               />
 
               <NavbarPremium label="Try Premium for NGN0" />
+            </div>
+
+            <div className="relative md:hidden" ref={mobileMenuRef}>
+              <button
+                className="flex items-center justify-center gap-1 cursor-pointer w-8 h-8 rounded-full hover:bg-[#0000000d] transition-all duration-300"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="More options"
+              >
+                <BsThreeDots />
+              </button>
+
+              {isMobileMenuOpen && (
+                <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-[#8c8c8c33] z-50">
+                  <button
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#f3f2ef] transition-colors text-left"
+                    onClick={() => {
+                      setActiveItem(6)
+                      setIsMobileMenuOpen(false)
+                    }}
+                  >
+                    <span className="text-[#00000099]">{BUSINESS_ICON}</span>
+                    <span className="text-sm font-[400] text-[#000000e6]">For Business</span>
+                  </button>
+                  <button
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#f3f2ef] transition-colors text-left border-t border-[#8c8c8c33]"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <span className="text-[#915907] min-w-4 min-h-4 rounded-sm bg-[#915907]" />
+                    <span className="text-sm font-[400] text-[#0009]">Try Premium for NGN0</span>
+                  </button>
+                </div>
+              )}
             </div>
           </nav>
         </div>
@@ -139,9 +190,9 @@ type NavbarPremiumProps = {
 
 const NavbarPremium = ({ label }: NavbarPremiumProps) => {
   return (
-    <button className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#f3f2ef] transition-colors group">
-      <span className="text-[#915907] transition-colors min-w-4 min-h-4 rounded-sm bg-[#915907]" />
-      <span className="text-xs font-[400] text-[#0009] text-left">{label}</span>
+    <button className="flex items-center gap-2 px-3 py-2 rounded-md text-[#0009] hover:text-black transition-colors group cursor-pointer">
+      <span className="text-[#915907] transition-colors min-w-4 min-h-4 rounded-sm bg-[#f9c982]" />
+      <span className="text-xs font-[400] text-left max-w-[94px]">{label}</span>
     </button>
   )
 }
