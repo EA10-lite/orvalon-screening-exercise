@@ -1,4 +1,3 @@
-// Recent search data for the search dropdown
 export type RecentPerson = {
     id: number
     name: string
