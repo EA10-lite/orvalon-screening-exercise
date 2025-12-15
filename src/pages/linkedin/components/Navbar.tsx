@@ -58,7 +58,7 @@ const Navbar = () => {
               className="border-right border-[#8c8c8c33]"
             />
 
-            <div className="flex items-center">
+            <div className="hidden md:flex items-center">
               <NavbarDropdown
                 label="For Business"
                 icon={BUSINESS_ICON}
