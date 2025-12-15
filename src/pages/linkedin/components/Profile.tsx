@@ -51,7 +51,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className={`bg-white sm:rounded-lg p-4 shadow-bg flex flex-col gap-4 ${showMore ? 'block' : 'hidden md:block'}`}>
+      <div className={`bg-white sm:rounded-lg p-4 shadow-bg flex flex-col gap-4 ${showMore ? 'block' : 'hidden md:flex'}`}>
         {OTHER_LINKS.map((link) => (
           <div key={link.label} className="flex items-center gap-2">
             {link.icon}
