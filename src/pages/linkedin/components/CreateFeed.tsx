@@ -11,7 +11,7 @@ const ARTICLE_ICON = (
 
 const CreateFeed = () => {
     return (
-        <div className="bg-white rounded-lg p-4 shadow-bg">
+        <div className="bg-white md:rounded-lg p-4 shadow-bg">
             <div className="flex items-center gap-2 mb-4">
                 <Avatar 
                     url={USER.url}

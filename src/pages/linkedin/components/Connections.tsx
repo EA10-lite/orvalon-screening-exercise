@@ -3,10 +3,14 @@ import Avatar from "./Avatar";
 import { FaPlus } from "react-icons/fa";
 import { CONNECTIONS } from "../constants/connections";
 
+const LINKS = [
+    "About", "Accessibility", "Help Center", "Privacy Policy", "Cookie Settings", "Copyright Policy", "Brand Policy", "Guest Controls", "Languages"
+]
+
 const Connections = () => {
     return (
         <>
-            <div className="bg-white rounded-lg p-4 shadow-bg mb-4">
+            <div className="bg-white md:rounded-lg p-4 shadow-bg mb-4">
                 <div className="flex items-center justify-between mb-4">
                     <h4 className="text-base font-[600] text-[#000000e6]">Add to your feed</h4>
                     <BsInfoSquareFill color={"#000000e6"} />
@@ -23,12 +27,22 @@ const Connections = () => {
 
             </div>
             <div className="">
-                <div className="w-ful rounded-lg overflow-hidden">
+                <div className="w-ful rounded-lg overflow-hidden bg-white shadow-bg flex items-center justify-center mb-4">
                     <img
                         src="https://media.licdn.com/media/AAYABATPAAgAAQAAAAAAAKwYrfHUPkoBQGmwnaG71Ps_5Q.png"
-                        className="w-full h-auto object-cover"
+                        className="max-w-[350px] max-h-[250px] object-cover"
                         loading="lazy"
                     />
+                </div>
+
+                <div className="flex items-center justify-center flex-wrap gap-x-4 gap-y-2 mx-4">
+                    {LINKS?.map((link) => (
+                        <button
+                            key={link}
+                            className="text-sm font-[400] text-[#00000099] hover:underline hover:text-[#0a66c2] cursor-pointer">
+                            <span>{link}</span>
+                        </button>
+                    ))}
                 </div>
             </div>
         </>

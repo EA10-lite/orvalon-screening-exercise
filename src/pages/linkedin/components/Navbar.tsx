@@ -2,6 +2,7 @@ import { useState } from "react"
 import { FaLinkedin } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import Avatar from "./Avatar"
+import Search from "./Search"
 import { USER } from "../constants/user"
 
 const HOME_ICON = (
@@ -46,11 +47,6 @@ const PREMIUM_ICON = (
     </svg>
 )
 
-const SEARCH_ICON = (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" focusable="false">
-        <path d="M21.41 18.59l-5.27-5.28A6.83 6.83 0 0017 10a7 7 0 10-7 7 6.83 6.83 0 003.31-.86l5.28 5.27a1 1 0 001.41-1.41zM5 10a5 5 0 115 5 5 5 0 01-5-5z"></path>
-    </svg>
-)
 
 const CHEVRON_DOWN_ICON = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" width="16" height="16" focusable="false">
@@ -68,7 +64,6 @@ const NAV_ITEMS = [
 
 const Navbar = () => {
     const [activeItem, setActiveItem] = useState<number>(0)
-    const [searchQuery, setSearchQuery] = useState<string>("")
 
     return (
         <header className="bg-white fixed top-0 z-[105] border-b border-[#8c8c8c33] w-full">
@@ -79,19 +74,12 @@ const Navbar = () => {
                             <FaLinkedin size={40} color="#0a66c2" />
                         </Link>
 
-                        <div className="flex-1 max-w-[280px]">
-                            <div className="relative">
-                                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[#00000099]">
-                                    {SEARCH_ICON}
-                                </div>
-                                <input
-                                    type="text"
-                                    placeholder="Search"
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full pl-10 pr-4 py-2 bg-[#eef3f8] rounded-md text-sm text-[#000000e6] placeholder:text-[#00000099] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0a66c2] transition-colors"
-                                />
-                            </div>
+                        <div className="hidden md:block flex-1">
+                            <Search isMobile={false} />
+                        </div>
+
+                        <div className="md:hidden">
+                            <Search isMobile={true} />
                         </div>
                     </div>
 
@@ -152,7 +140,7 @@ const NavbarItem = ({ label, icon, isActive, badge, handleClick }: NavbarItemPro
                     </span>
                 )}
             </span>
-            <span className="text-xs font-[400] mt-1">{label}</span>
+            <span className="text-xs font-[400] mt-1 hidden lg:block">{label}</span>
         </button>
     )
 }
