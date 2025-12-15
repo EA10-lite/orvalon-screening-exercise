@@ -39,13 +39,7 @@ const BUSINESS_ICON = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
       <path d="M3 3h4v4H3zm7 4h4V3h-4zm7-4v4h4V3zM3 14h4v-4H3zm7 0h4v-4h-4zm7 0h4v-4h-4zM3 21h4v-4H3zm7 0h4v-4h-4zm7 0h4v-4h-4z"></path>
     </svg>  
-)
-
-const PREMIUM_ICON = (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
-        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"></path>
-    </svg>
-)
+);
 
 
 const CHEVRON_DOWN_ICON = (
@@ -109,7 +103,7 @@ const Navbar = () => {
                             handleClick={() => setActiveItem(6)}
                         />
 
-                        <NavbarPremium label="Try Premium for NGN0" icon={PREMIUM_ICON} />
+                        <NavbarPremium label="Try Premium for NGN0" />
                     </nav>
                 </div>
             </div>
@@ -135,7 +129,7 @@ const NavbarItem = ({ label, icon, isActive, badge, handleClick }: NavbarItemPro
             <span className="navbar-item-icon relative">
                 {icon}
                 {badge && (
-                    <span className="absolute -top-1 -right-1 bg-[#d11124] text-white text-[10px] font-semibold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+                    <span className="absolute -top-1 -right-2.5 bg-[#d11124] text-white text-[10px] font-semibold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
                         {badge > 9 ? "9+" : badge}
                     </span>
                 )}
@@ -170,16 +164,13 @@ const NavbarDropdown = ({ label, icon, isActive, handleClick }: NavbarDropdownPr
 
 type NavbarPremiumProps = {
     label: string
-    icon: React.ReactNode
 }
 
-const NavbarPremium = ({ label, icon }: NavbarPremiumProps) => {
+const NavbarPremium = ({ label }: NavbarPremiumProps) => {
     return (
-        <button className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#f3f2ef] transition-colors group">
-            <span className="text-[#915907] transition-colors">
-                {icon}
-            </span>
-            <span className="text-xs font-[400] text-[#0009]">
+        <button className="flex items-center  gap-2 px-3 py-2 rounded-md hover:bg-[#f3f2ef] transition-colors group">
+            <span className="text-[#915907] transition-colors w-5 h-5 rounded-sm bg-[#915907]" />
+            <span className="text-xs font-[400] text-[#0009] text-left">
                 {label}
             </span>
         </button>
