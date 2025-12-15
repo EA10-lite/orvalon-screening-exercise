@@ -27,30 +27,34 @@ const Todo = () => {
     return (
         <div className="min-h-screen">
             <header>
-                <div className="bg-black p-6">
-                    <h4 className="text-white text-lg font-[500]">Welcome to Todo App</h4>
+                <div className="bg-black py-6">
+                    <div className='max-w-[1280px] mx-auto px-4'>
+                        <h4 className="text-white text-lg font-[500]">Welcome to Todo App</h4>
+                    </div>
                 </div>
-                <div className="bg-[#2a2c33] p-6">
-                    <TodoForm
-                        task={task}
-                        setTask={setTask}
-                        handleSubmit={handleSubmit}
-                    />
+                <div className="bg-[#2a2c33] py-6">
+                    <div className='max-w-[1280px] mx-auto px-4'>
+                        <TodoForm
+                            task={task}
+                            setTask={setTask}
+                            handleSubmit={handleSubmit}
+                        />
 
-                    <div className="flex items-center gap-2">
-                        {FILTERS.map((filter) => (
-                            <TodoFilter
-                                key={filter}
-                                filter={filter}
-                                activeFilter={activeFilter}
-                                setActiveFilter={setActiveFilter}
-                            />
-                        ))}
+                        <div className="flex items-center gap-2">
+                            {FILTERS.map((filter) => (
+                                <TodoFilter
+                                    key={filter}
+                                    filter={filter}
+                                    activeFilter={activeFilter}
+                                    setActiveFilter={setActiveFilter}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </header>
 
-            <div className="space-y-4">
+            <div className="max-w-[1280px] mx-auto px-4 py-8 space-y-4">
                 {filteredTodos?.length <= 0 ? (
                     <EmptyTodo activeFilter={activeFilter} />
                 ) : (

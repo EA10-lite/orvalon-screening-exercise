@@ -26,7 +26,7 @@ const TodoForm = ({
                     />
                     <button
                         type="submit"
-                        className="ml-2 px-4 py-3 rounded-lg bg-black text-white flex items-center gap-2 justify-center cursor-pointer min-w-32"
+                        className="ml-2 px-4 py-3 rounded-lg bg-black text-white hidden md:flex items-center gap-2 justify-center cursor-pointer min-w-32"
                     >
                         <GoPlus size={18} />
                         <span className="uppercase">Add</span>

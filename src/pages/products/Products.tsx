@@ -31,18 +31,22 @@ const Products = () => {
     return (
         <div className="min-h-screen bg-gray-50">
             <header>
-                <div className="bg-black p-6">
-                    <h4 className="text-white text-lg font-[500]">Welcome to Product Listing</h4>
+                <div className="bg-black py-6">
+                    <div className='max-w-[1280px] mx-auto px-4'>
+                        <h4 className="text-white text-lg font-[500]">Welcome to Product Listing</h4>
+                    </div>
                 </div>
             </header>
-            <div className="bg-[#2a2c33] p-6 sticky top-0 z-50 shadow-md">
-                <SearchBar
-                    searchQuery={searchQuery}
-                    setSearchQuery={setSearchQuery}
-                />
+            <div className="bg-[#2a2c33] py-6 sticky top-0 z-50 shadow-md">
+                <div className='max-w-[1280px] mx-auto px-4'>    
+                    <SearchBar
+                        searchQuery={searchQuery}
+                        setSearchQuery={setSearchQuery}
+                    />
+                </div>
             </div>
 
-            <main className="container mx-auto px-4 py-8">
+            <main className="max-w-[1280px] mx-auto px-4 py-8">
                 {isLoading && <LoadingSpinner />}
 
                 {isError && <ErrorState />}
