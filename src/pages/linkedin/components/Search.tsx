@@ -20,14 +20,12 @@ type SearchProps = {
 
 const Search = ({ isMobile = false }: SearchProps) => {
     const [searchQuery, setSearchQuery] = useState<string>("")
-    const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
     const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState<boolean>(false)
     const searchRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<HTMLInputElement>(null)
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
-                setIsDropdownOpen(false)
                 setIsMobileDropdownOpen(false)
             }
         }
@@ -40,32 +38,24 @@ const Search = ({ isMobile = false }: SearchProps) => {
     const handleInputFocus = () => {
         if (isMobile) {
             setIsMobileDropdownOpen(true)
-        } else {
-            setIsDropdownOpen(true)
         }
     }
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value)
-        if (!isMobile) {
-            setIsDropdownOpen(true)
-        }
     }
 
     const handleClearRecent = () => {
-        setIsDropdownOpen(false)
         setIsMobileDropdownOpen(false)
     }
 
     const handlePersonClick = (name: string) => {
         setSearchQuery(name)
-        setIsDropdownOpen(false)
         setIsMobileDropdownOpen(false)
     }
 
     const handleSearchTermClick = (term: string) => {
         setSearchQuery(term)
-        setIsDropdownOpen(false)
         setIsMobileDropdownOpen(false)
     }
 
@@ -167,59 +157,6 @@ const Search = ({ isMobile = false }: SearchProps) => {
                     className="w-full pl-10 pr-4 py-2 bg-white rounded-[35px] border border-[#0000004d] text-sm text-[#000000e6] placeholder:text-[#00000099] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0a66c2] transition-colors w-full"
                 />
             </div>
-
-            {/* Dropdown */}
-            {isDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-full bg-white rounded-lg shadow-lg border border-[#8c8c8c33] z-50">
-                    <div className="p-4">
-                        <div className="flex items-center justify-between mb-3">
-                            <h3 className="text-sm font-semibold text-[#000000e6]">Recent</h3>
-                            <button
-                                onClick={handleClearRecent}
-                                className="text-sm text-[#0a66c2] hover:underline"
-                            >
-                                Clear
-                            </button>
-                        </div>
-
-                        {/* Recent People */}
-                        {RECENT_PEOPLE.length > 0 && (
-                            <div className="mb-4">
-                                <div className="flex gap-3 overflow-x-auto pb-2">
-                                    {RECENT_PEOPLE.map((person) => (
-                                        <button
-                                            key={person.id}
-                                            onClick={() => handlePersonClick(person.name)}
-                                            className="flex flex-col items-center gap-1 min-w-[60px] hover:opacity-80 transition-opacity"
-                                        >
-                                            <Avatar url={person.url} size="sm" />
-                                            <span className="text-xs text-[#000000e6] text-center truncate w-full">
-                                                {person.name}
-                                            </span>
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Recent Search Terms */}
-                        {RECENT_SEARCH_TERMS.length > 0 && (
-                            <div className="space-y-1">
-                                {RECENT_SEARCH_TERMS.map((searchTerm) => (
-                                    <button
-                                        key={searchTerm.id}
-                                        onClick={() => handleSearchTermClick(searchTerm.term)}
-                                        className="w-full flex items-center gap-3 p-2 hover:bg-[#f3f2ef] rounded-md transition-colors text-left"
-                                    >
-                                        <span className="text-[#00000099]">{CLOCK_ICON}</span>
-                                        <span className="text-sm text-[#000000e6]">{searchTerm.term}</span>
-                                    </button>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                </div>
-            )}
         </div>
     )
 }
