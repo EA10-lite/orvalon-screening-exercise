@@ -3,3 +3,22 @@
 input, select, button {
     outline: none !important;
 }
+
+.navbar-item::after {
+    border-bottom: 2px solid #000000e6;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transition: transform .2s ease-in-out;
+    width: 100%;
+}
+
+.navbar-item.active-item::after {
+    transform: scaleX(1);
+}
+
+
+.shadow-bg {
+    box-shadow: 0px 0px 0px 1px #8c8c8c33;
+}
