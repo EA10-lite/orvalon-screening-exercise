@@ -122,7 +122,7 @@ type NavbarItemProps = {
 const NavbarItem = ({ label, icon, isActive, badge, handleClick }: NavbarItemProps) => {
     return (
         <button
-            className={`navbar-item hover:text-black p-2 rounded-md cursor-pointer flex flex-col items-center min-w-[80px] relative transition-colors
+            className={`navbar-item hover:text-black p-2 rounded-md cursor-pointer flex flex-col items-center relative transition-colors
                 ${isActive ? "text-black active-item" : "text-[#00000099]"}`}
             onClick={handleClick}
         >
@@ -149,7 +149,7 @@ type NavbarDropdownProps = {
 const NavbarDropdown = ({ label, icon, isActive, handleClick }: NavbarDropdownProps) => {
     return (
         <button
-            className={`navbar-item hover:text-black p-2 rounded-md cursor-pointer flex flex-col items-center min-w-[80px] relative transition-colors
+            className={`navbar-item hover:text-black p-2 rounded-md cursor-pointer flex flex-col items-center relative transition-colors
                 ${isActive ? "text-black active-item" : "text-[#00000099]"}`}
             onClick={handleClick}
         >

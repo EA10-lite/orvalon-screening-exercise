@@ -19,11 +19,14 @@ const LinkedIn = () => {
                         <Profile />
                     </aside>
                     <div className="col-span-1 md:col-span-4 lg:col-span-4 flex flex-col gap-4">
-                        <main>
-                            <div className="mb-4">
-                                <CreateFeed />
+                        <main className="w-full">
+                            <CreateFeed />
+                            <div className="my-2">
+                                <div className="flex items-center gap-2">
+                                    <hr className="flex-1 text-[#8c8c8c33]" />
+                                    <p className="text-xs text-[#00000099]">Sort by: <span className="font-[600] text-black">Recent</span></p>
+                                </div>
                             </div>
-
                             <div className="space-y-2">
                                 {FEED.map((feed) => (
                                     <Feed
@@ -37,7 +40,7 @@ const LinkedIn = () => {
                             <Connections />
                         </aside>
                     </div>
-                    <aside className="hidden lg:block lg:col-span-3 lg:sticky top-[104px] h-fit">
+                    <aside className="hidden lg:block lg:col-span-3 h-fit">
                         <Connections />
                     </aside>
                 </div>

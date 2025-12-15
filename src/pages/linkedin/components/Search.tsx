@@ -164,7 +164,7 @@ const Search = ({ isMobile = false }: SearchProps) => {
                     value={searchQuery}
                     onChange={handleSearchChange}
                     onFocus={handleInputFocus}
-                    className="w-full pl-10 pr-4 py-2 bg-white rounded-[35px] border border-[#0000004d] text-sm text-[#000000e6] placeholder:text-[#00000099] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0a66c2] transition-colors max-w-[384px]"
+                    className="w-full pl-10 pr-4 py-2 bg-white rounded-[35px] border border-[#0000004d] text-sm text-[#000000e6] placeholder:text-[#00000099] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0a66c2] transition-colors w-full"
                 />
             </div>
 

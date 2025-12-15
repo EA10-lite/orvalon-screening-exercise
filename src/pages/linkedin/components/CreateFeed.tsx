@@ -1,13 +1,8 @@
-import { HiOutlinePhoto } from "react-icons/hi2";
 import { USER } from "../constants/user";
 import Avatar from "./Avatar";
 import { PiVideoFill } from "react-icons/pi";
-
-const ARTICLE_ICON = (
-    <svg role="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" data-supported-dps="24x24" data-test-icon="content-align-left-medium" type="content-align-left">
-    <use href="#content-align-left-medium" width="24" height="24"></use>
-</svg>
-)
+import { AiFillLayout } from "react-icons/ai";
+import { MdOutlinePhoto } from "react-icons/md";
 
 const CreateFeed = () => {
     return (
@@ -24,18 +19,18 @@ const CreateFeed = () => {
                 </button>
             </div>
             <div className="flex items-center justify-evenly">
-                <div className="flex items-center gap-2">
+                <button className="flex items-center justify-center gap-1 cursor-pointer px-4 py-2 text-base leading-2xl font-[600] text-[#000000bf] hover:bg-[#0000000d] transition-all duration-300 rounded-md flex-1">
                     <PiVideoFill size={20} color={"#5f9b41"} />
                     <p className="text-sm font-[600]">Video</p>
-                </div>
-                <div className="flex items-center gap-2">
-                    <HiOutlinePhoto size={20} color={"#378fe9"} />
+                </button>
+                <button className="flex items-center justify-center gap-1 cursor-pointer px-4 py-2 text-base leading-2xl font-[600] text-[#000000bf] hover:bg-[#0000000d] transition-all duration-300 rounded-md flex-1">
+                    <MdOutlinePhoto size={20} color={"#378fe9"} />
                     <p className="text-sm font-[600]">Photo</p>
-                </div>
-                <div className="flex items-center gap-2">
-                    <span>{ARTICLE_ICON}</span>
+                    </button>
+                <button className="flex items-center justify-center gap-1 cursor-pointer px-4 py-2 text-base leading-2xl font-[600] text-[#000000bf] hover:bg-[#0000000d] transition-all duration-300 rounded-md flex-1">
+                    <AiFillLayout size={20} color={"#e06847"} />
                     <p className="text-sm font-[600]">Write Article</p>
-                </div>
+                </button>
             </div>
         </div>
     )

@@ -49,8 +49,8 @@ const Profile = () => {
                         <div className="profile-picture-edit"></div>
                     </div>
                     <div className="px-4 pb-4">
-                        <h4 className="text-2xl font-semibold">{USER.name}</h4>
-                        <p className="text-sm text-gray-500">{USER.location}</p>
+                        <h4 className="text-[20px] font-semibold">{USER.name}</h4>
+                        <p className="text-xs text-gray-500">{USER.location}</p>
                     </div>
                 </div>
             </div>

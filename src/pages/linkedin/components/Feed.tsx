@@ -53,13 +53,15 @@ const Feed = ({ feed }: { feed: FeedPost }) => {
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                        <button className="flex items-center gap-1 cursor-pointer text-[#0a66c2] px-4 py-1 rounded-md text-base font-[600] transition-all duration-300">
-                            <FaPlus size={16} />
+                    <div className="flex items-center gap-1">
+                        <button className="flex items-center gap-1 cursor-pointer text-[#0a66c2] px-4 py-1 rounded-md text-sm font-[600] transition-all duration-300 hover:bg-[#0a66c20d]/90">
+                            <FaPlus size={14} />
                             <span>Follow</span>
                         </button>
 
-                        <BsThreeDots />
+                        <button className="flex items-center justify-center gap-1 cursor-pointer w-8 h-8 rounded-full hover:bg-[#0000000d] transition-all duration-300 flex-1">
+                            <BsThreeDots />
+                        </button>
                     </div>
                 </div>
             </div>

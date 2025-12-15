@@ -26,7 +26,7 @@ const Connections = () => {
                 </div>
 
             </div>
-            <div className="">
+            <div className="lg:sticky lg:top-[104px] lg:self-start">
                 <div className="w-ful rounded-lg overflow-hidden bg-white shadow-bg flex items-center justify-center mb-4">
                     <img
                         src="https://media.licdn.com/media/AAYABATPAAgAAQAAAAAAAKwYrfHUPkoBQGmwnaG71Ps_5Q.png"
