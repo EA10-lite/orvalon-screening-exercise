@@ -37,7 +37,7 @@ const REACTIONS_URLS = [
 
 const Feed = ({ feed }: { feed: FeedPost }) => {
     return (
-        <div className="bg-white md:rounded-lg shadow-bg feed-card">
+        <div className="bg-white sm:rounded-lg shadow-bg feed-card">
             <div className="card-header px-4 pt-4 pb-2">
                 <div className="flex items-start justify-between gap-2">
                     <div className="flex items-start gap-2">

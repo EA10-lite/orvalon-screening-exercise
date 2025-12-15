@@ -25,8 +25,8 @@ const OTHER_LINKS = [
 
 const Profile = () => {
     return (
-        <div className="flex flex-col gap-2 sticky top-0">
-            <div className="bg-white md:rounded-[8px] shadow-bg overflow-hidden">
+        <div className="flex flex-col gap-2">
+            <div className="bg-white sm:rounded-[8px] shadow-bg overflow-hidden">
                 <div className="cover-photo">
                     <img
                         src="https://picsum.photos/200/300"
@@ -54,7 +54,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-white md:rounded-[8px] p-4 shadow-bg connection-card">
+            <div className="bg-white sm:rounded-[8px] p-4 shadow-bg connection-card">
                 <div className="flex items-start justify-between">
                     <div className="flex flex-col">
                         <span className="text-xs leading-base font-[600] text-black">Connections</span>
@@ -63,7 +63,7 @@ const Profile = () => {
                     <span className="text-xs leading-base font-[600] text-[#0a66c2]">8</span>
                 </div>
             </div>
-            <div className="bg-white md:rounded-lg p-4 shadow-bg flex flex-col gap-4">
+            <div className="bg-white sm:rounded-lg p-4 shadow-bg flex flex-col gap-4">
                 {OTHER_LINKS.map((link) => (
                     <div key={link.label} className="flex items-center gap-2">
                         {link.icon}

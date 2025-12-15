@@ -1,3 +1,4 @@
+import { RiArrowDownSFill } from "react-icons/ri"
 import {
     Connections,
     CreateFeed,
@@ -13,7 +14,7 @@ const LinkedIn = () => {
         <div className="min-h-screen bg-[#f4f2ee]">
             <Navbar />
 
-            <div className="container mx-auto mt-[52px] py-[52px]">
+            <div className="container mx-auto mt-[52px] py-[52px] sm:px-4">
                 <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-9 gap-4 relative">
                     <aside className="col-span-1 md:col-span-2 lg:col-span-2 lg:sticky top-[104px] h-fit">
                         <Profile />
@@ -24,7 +25,11 @@ const LinkedIn = () => {
                             <div className="my-2">
                                 <div className="flex items-center gap-2">
                                     <hr className="flex-1 text-[#8c8c8c33]" />
-                                    <p className="text-xs text-[#00000099]">Sort by: <span className="font-[600] text-black">Recent</span></p>
+                                    <div className="text-xs flex items-center gap-1 cursor-pointer">
+                                        <span className="text-[#00000099]">Sort by: </span>
+                                        <span className="font-[600] text-black">Recent</span>
+                                        <span className="text-[#00000099]"><RiArrowDownSFill size={16} /></span>
+                                    </div>
                                 </div>
                             </div>
                             <div className="space-y-2">

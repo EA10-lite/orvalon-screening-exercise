@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import Avatar from "./Avatar"
 import Search from "./Search"
 import { USER } from "../constants/user"
+import { RiArrowDownSFill } from "react-icons/ri"
 
 const HOME_ICON = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
@@ -38,15 +39,9 @@ const NOTIFICATIONS_ICON = (
 const BUSINESS_ICON = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
       <path d="M3 3h4v4H3zm7 4h4V3h-4zm7-4v4h4V3zM3 14h4v-4H3zm7 0h4v-4h-4zm7 0h4v-4h-4zM3 21h4v-4H3zm7 0h4v-4h-4zm7 0h4v-4h-4z"></path>
-    </svg>  
+    </svg>
 );
 
-
-const CHEVRON_DOWN_ICON = (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" width="16" height="16" focusable="false">
-        <path d="M8 11L3 6h10z"></path>
-    </svg>
-)
 
 const NAV_ITEMS = [
     { label: "Home", icon: HOME_ICON },
@@ -63,7 +58,7 @@ const Navbar = () => {
         <header className="bg-white fixed top-0 z-[105] border-b border-[#8c8c8c33] w-full">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 flex-1">
                         <Link to="/" className="flex-shrink-0">
                             <FaLinkedin size={40} color="#0a66c2" />
                         </Link>
@@ -94,16 +89,20 @@ const Navbar = () => {
                             icon={<Avatar size="sm" url={USER.url} />}
                             isActive={activeItem === 5}
                             handleClick={() => setActiveItem(5)}
+                            className="border-right border-[#8c8c8c33]"
                         />
 
-                        <NavbarDropdown
-                            label="For Business"
-                            icon={BUSINESS_ICON}
-                            isActive={activeItem === 6}
-                            handleClick={() => setActiveItem(6)}
-                        />
+                        <div className="flex items-center hidden">
+                            <NavbarDropdown
+                                label="For Business"
+                                icon={BUSINESS_ICON}
+                                isActive={activeItem === 6}
+                                handleClick={() => setActiveItem(6)}
+                            />
 
-                        <NavbarPremium label="Try Premium for NGN0" />
+                            <NavbarPremium label="Try Premium for NGN0" />
+                        </div>
+
                     </nav>
                 </div>
             </div>
@@ -144,19 +143,20 @@ type NavbarDropdownProps = {
     icon: React.ReactNode
     isActive: boolean
     handleClick: () => void
+    className?: string
 }
 
-const NavbarDropdown = ({ label, icon, isActive, handleClick }: NavbarDropdownProps) => {
+const NavbarDropdown = ({ label, icon, isActive, handleClick, className }: NavbarDropdownProps) => {
     return (
         <button
-            className={`navbar-item hover:text-black p-2 rounded-md cursor-pointer flex flex-col items-center relative transition-colors
-                ${isActive ? "text-black active-item" : "text-[#00000099]"}`}
+            className={`navbar-item hover:text-black p-2 cursor-pointer flex flex-col items-center relative transition-colors
+                ${isActive ? "text-black active-item" : "text-[#00000099]"} ${className}`}
             onClick={handleClick}
         >
             <span className="navbar-item-icon">{icon}</span>
-            <span className="text-xs font-[400] mt-1 flex items-center gap-1 whitespace-nowrap">
+            <span className="text-xs font-[400] mt-1 flex items-center gap-1 whitespace-nowrap hidden lg:inline-flex">
                 {label}
-                <span className="text-[10px]">{CHEVRON_DOWN_ICON}</span>
+                <span className="text-[10px]"><RiArrowDownSFill size={20} /></span>
             </span>
         </button>
     )
@@ -169,7 +169,7 @@ type NavbarPremiumProps = {
 const NavbarPremium = ({ label }: NavbarPremiumProps) => {
     return (
         <button className="flex items-center  gap-2 px-3 py-2 rounded-md hover:bg-[#f3f2ef] transition-colors group">
-            <span className="text-[#915907] transition-colors w-5 h-5 rounded-sm bg-[#915907]" />
+            <span className="text-[#915907] transition-colors min-w-4 min-h-4 rounded-sm bg-[#915907]" />
             <span className="text-xs font-[400] text-[#0009] text-left">
                 {label}
             </span>
