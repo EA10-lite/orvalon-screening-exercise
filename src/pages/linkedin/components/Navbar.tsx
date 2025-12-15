@@ -72,7 +72,7 @@ const Navbar = () => {
 
     return (
         <header className="bg-white fixed top-0 z-[105] border-b border-[#8c8c8c33] w-full">
-            <div className="mx-auto px-4">
+            <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
                         <Link to="/" className="flex-shrink-0">

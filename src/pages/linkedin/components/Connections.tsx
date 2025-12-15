@@ -5,21 +5,33 @@ import { CONNECTIONS } from "../constants/connections";
 
 const Connections = () => {
     return (
-        <div className="bg-white rounded-lg p-4 shadow-bg">
-            <div className="flex items-center justify-between mb-4">
-                <h4 className="text-base font-[600] text-[#000000e6]">Add to your feed</h4>
-                <BsInfoSquareFill color={"#000000e6"} />
-            </div>
+        <>
+            <div className="bg-white rounded-lg p-4 shadow-bg mb-4">
+                <div className="flex items-center justify-between mb-4">
+                    <h4 className="text-base font-[600] text-[#000000e6]">Add to your feed</h4>
+                    <BsInfoSquareFill color={"#000000e6"} />
+                </div>
 
-            <div className="flex flex-col gap-4">
-                {CONNECTIONS.map((connection) => (
-                    <Connection
-                        key={connection.id}
-                        connection={connection}
-                    />
-                ))}
+                <div className="flex flex-col gap-4">
+                    {CONNECTIONS.map((connection) => (
+                        <Connection
+                            key={connection.id}
+                            connection={connection}
+                        />
+                    ))}
+                </div>
+
             </div>
-        </div>
+            <div className="">
+                <div className="w-ful rounded-lg overflow-hidden">
+                    <img
+                        src="https://media.licdn.com/media/AAYABATPAAgAAQAAAAAAAKwYrfHUPkoBQGmwnaG71Ps_5Q.png"
+                        className="w-full h-auto object-cover"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </>
     )
 }
 
