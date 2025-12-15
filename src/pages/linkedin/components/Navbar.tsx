@@ -21,23 +21,30 @@ const NAV_ITEMS = [
 const Navbar = () => {
   const [activeItem, setActiveItem] = useState<number>(0)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
+  const [isMeDropdownOpen, setIsMeDropdownOpen] = useState<boolean>(false)
+  const [isBusinessDropdownOpen, setIsBusinessDropdownOpen] = useState<boolean>(false)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const meDropdownRef = useRef<HTMLDivElement>(null)
+  const businessDropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
         setIsMobileMenuOpen(false)
       }
+      if (meDropdownRef.current && !meDropdownRef.current.contains(event.target as Node)) {
+        setIsMeDropdownOpen(false)
+      }
+      if (businessDropdownRef.current && !businessDropdownRef.current.contains(event.target as Node)) {
+        setIsBusinessDropdownOpen(false)
+      }
     }
 
-    if (isMobileMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
-    }
-
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [isMobileMenuOpen])
+  }, [])
 
   return (
     <header className="bg-white fixed top-0 z-[105] border-b border-[#8c8c8c33] w-full">
@@ -69,21 +76,81 @@ const Navbar = () => {
               />
             ))}
 
-            <NavbarDropdown
-              label="Me"
-              icon={<Avatar size="sm" url={USER.url} />}
-              isActive={activeItem === 5}
-              handleClick={() => setActiveItem(5)}
-              className="border-right border-[#8c8c8c33]"
-            />
+            <div className="relative" ref={meDropdownRef}>
+              <NavbarDropdown
+                label="Me"
+                icon={<Avatar size="sm" url={USER.url} />}
+                isActive={activeItem === 5}
+                handleClick={() => {
+                  setActiveItem(5)
+                  setIsMeDropdownOpen(!isMeDropdownOpen)
+                }}
+                className="border-right border-[#8c8c8c33]"
+              />
+
+              {isMeDropdownOpen && (
+                <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-lg shadow-lg border border-[#8c8c8c33] z-50">
+                  <div className="p-4 border-b border-[#8c8c8c33]">
+                    <div className="flex items-center gap-3">
+                      <Avatar url={USER.url} size="md" />
+                      <div>
+                        <h4 className="text-sm font-[600] text-[#000000e6]">{USER.name}</h4>
+                        <p className="text-xs text-gray-500">{USER.title}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="py-2">
+                    <button className="w-full text-left px-4 py-2 text-sm text-[#000000e6] hover:bg-[#f3f2ef] transition-colors">
+                      View Profile
+                    </button>
+                    <button className="w-full text-left px-4 py-2 text-sm text-[#000000e6] hover:bg-[#f3f2ef] transition-colors">
+                      Account
+                    </button>
+                    <button className="w-full text-left px-4 py-2 text-sm text-[#000000e6] hover:bg-[#f3f2ef] transition-colors">
+                      Settings & Privacy
+                    </button>
+                    <button className="w-full text-left px-4 py-2 text-sm text-[#000000e6] hover:bg-[#f3f2ef] transition-colors">
+                      Help
+                    </button>
+                    <button className="w-full text-left px-4 py-2 text-sm text-[#000000e6] hover:bg-[#f3f2ef] transition-colors border-t border-[#8c8c8c33] mt-2">
+                      Sign Out
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
 
             <div className="hidden md:flex items-center">
-              <NavbarDropdown
-                label="For Business"
-                icon={BUSINESS_ICON}
-                isActive={activeItem === 6}
-                handleClick={() => setActiveItem(6)}
-              />
+              <div className="relative" ref={businessDropdownRef}>
+                <NavbarDropdown
+                  label="For Business"
+                  icon={BUSINESS_ICON}
+                  isActive={activeItem === 6}
+                  handleClick={() => {
+                    setActiveItem(6)
+                    setIsBusinessDropdownOpen(!isBusinessDropdownOpen)
+                  }}
+                />
+
+                {isBusinessDropdownOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-lg shadow-lg border border-[#8c8c8c33] z-50">
+                    <div className="py-2">
+                      <button className="w-full text-left px-4 py-2 text-sm text-[#000000e6] hover:bg-[#f3f2ef] transition-colors">
+                        Hire on LinkedIn
+                      </button>
+                      <button className="w-full text-left px-4 py-2 text-sm text-[#000000e6] hover:bg-[#f3f2ef] transition-colors">
+                        Advertise
+                      </button>
+                      <button className="w-full text-left px-4 py-2 text-sm text-[#000000e6] hover:bg-[#f3f2ef] transition-colors">
+                        Sales Solutions
+                      </button>
+                      <button className="w-full text-left px-4 py-2 text-sm text-[#000000e6] hover:bg-[#f3f2ef] transition-colors">
+                        Learning Solutions
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
 
               <NavbarPremium label="Try Premium for NGN0" />
             </div>
@@ -113,7 +180,7 @@ const Navbar = () => {
                     className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#f3f2ef] transition-colors text-left border-t border-[#8c8c8c33]"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <span className="text-[#915907] min-w-4 min-h-4 rounded-sm bg-[#915907]" />
+                    <span className="text-[#915907] min-w-4 min-h-4 rounded-sm bg-[#f9c982]" />
                     <span className="text-sm font-[400] text-[#0009]">Try Premium for NGN0</span>
                   </button>
                 </div>
